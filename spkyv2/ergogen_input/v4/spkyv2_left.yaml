@@ -1,0 +1,71 @@
+points:
+  zones:
+    matrix:
+      columns:
+        tilda:
+          rows:
+            thumb:
+              skip: true
+            zxcv:
+              width: 2.25u
+              shift: [0.65u, 0]
+            asdf:
+              width: 1.75u
+              shift: [-0.25u, 0]
+            qwer:
+              width: 1.5u
+              shift: [-0.125u, 0]
+            number:
+              shift: [-0.25u, 0]
+        q:
+          rows:
+            thumb.skip: true
+            esc.skip: true
+        w:
+          rows.thumb.skip: true
+          rows.esc.skip: true
+        e:
+          rows:
+            thumb.skip: true
+            esc.skip: true
+            control:
+              width: 1.25u
+              shift: [0.125u, 0]
+            zxcv:
+              shift: [1.125u, 0]
+        r:
+          rows:
+            esc.skip: true
+            thumb.skip: true
+            control:
+              width: 2.5u
+              shift: [1u, 0]
+            zxcv:
+              shift: [0.25u, 0]
+        t:
+          rows:
+            esc.skip: true
+            control:
+              skip: true
+            zxcv:
+              shift: [1.25u, 0]
+        six:
+          rows:
+            asdf.skip: true
+            qwer.skip: true
+            esc.skip: true
+            control.skip: true
+            zxcv.skip: true
+
+      rows:
+        thumb:
+        control:
+        zxcv:
+          shift: [1.25u, 0]
+        asdf:
+          shift: [-0.5u, 0]
+        qwer:
+          shift: [-0.25u, 0]
+        number:
+          shift: [-0.5u, 0]
+        esc:

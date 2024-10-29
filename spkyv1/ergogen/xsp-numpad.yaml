@@ -1,0 +1,120 @@
+points:
+  key:
+    padding: 1u
+    footprints:
+      mx_hotswap:
+        type: mx
+        nets:
+          from: =column_net
+          to: GND
+        params:
+            keycaps: true
+            hotswap: true
+  zones:
+    matrix:
+      rows:
+        r1:
+        r2:
+        r3:
+        r4:
+        r5:
+      columns:
+        c1:
+          rows:
+            r1:
+              column_net: P19
+            r2:
+              column_net: P18
+            r3:
+              column_net: P15
+            r4:
+              column_net: P14
+            r5:
+              column_net: P10
+        c2:
+          rows:
+            r1:
+              column_net: P8
+            r2:
+              column_net: P9
+            r3:
+              column_net: P21
+            r4:
+              column_net: P20
+            r5:
+              column_net: P16
+        c3:
+          rows:
+            r1:
+              column_net: P7
+            r2:
+              column_net: P6
+            r3:
+              column_net: P5
+            r4:
+              column_net: P4
+            r5:
+              skip: true
+        c4:
+          rows:
+            r1:
+              column_net: P3
+            r2:
+              column_net: P2
+            r3:
+              column_net: P0
+            r4:
+              column_net: P1
+            r5:
+              skip: true
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1u - 0.5 , 1u -0.5]
+      - type: rectangle
+        size: [80, 100]
+        anchor:
+          ref: matrix_c1_r1
+          shift: [-11, -11]
+    nicenano:
+      - type: rectangle
+        size: [33, 17.8]
+        anchor:
+          ref: matrix_c1_r1
+          rotate: 0
+          shift: [32, 67]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 2
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1u, 1u]
+        bound: false
+    preview:
+        [keycap_outlines, nicenano]
+pcbs:
+  xspNum:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref: matrix_c1_r1
+          shift: [47, 77]
+          rotate: 180
+        params:
+          orientation: down
+      bat:
+        type: bat
+        nets: 
+          neg: GND
+        anchor:
+          ref: matrix_c1_r1
+          shift: [27, 87]
+          rotate: 90

@@ -1,0 +1,325 @@
+points:
+  key:
+    padding: u
+    footprints:
+      mx_hotswap:
+        type: mx
+        nets:
+          from: =column_net
+          to: =colrow
+        params:
+            keycaps: true
+            hotswap: true
+            reverse: true
+      diode:
+        anchor:
+          shift: [-3, -4]
+        type: diode
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+            reverse: true
+      viaRow:
+        type: via
+        anchor: 
+          shift: [-6,-4]
+        nets: 
+          net: =row_net
+      viaCol:
+        type: via
+        anchor: 
+          shift: [3,-3]
+        nets: 
+          net: =column_net
+  zones:
+    matrix:
+      rows:
+        bottom:
+          row_net: P14
+          bind: [0,0,1,1]
+        home:
+          row_net: P15
+          bind: [0,0,1,1]
+        top:
+          row_net: P18
+          bind: [0,0,1,1]
+        num:
+          row_net: P19
+          bind: [0,0,1,1]
+      columns:
+        tab:
+          key:
+            column_net: P4
+        pinky:
+          key:
+            column_net: P5
+          stagger: 3
+        ring:
+          key:
+            column_net: P6
+          origin: [-12, -19]
+          stagger: 6
+        middle:
+          key:
+            column_net: P7
+          stagger: 5
+        index:
+          key:
+            column_net: P8
+          stagger: -24
+          rows:
+            thumb:
+              row_net: P19
+            bottom:
+              row_net: P16
+            home:
+              row_net: P14
+            top:
+              row_net: P15
+            num:
+              row_net: P18
+        inner:
+          key:
+            column_net: P9
+          stagger: 16
+        # r: # todo: how to not generate footprint for it?
+        #   stagger: 0
+        #   rows:
+        #     bottom:
+        #       skip: true
+        #     home:
+        #       column_net: P4
+        #       row_net: P19
+        #     top:
+        #       skip: true
+        #     num:
+        #       skip: true
+    thumbfan:
+      anchor:
+        rotate: -45
+        ref: matrix_inner_bottom
+        shift: [3, -30]
+      rows:
+        thumb:
+          bind: [1,1,0,0]
+        second:
+          bind: [0,1,1,0]
+      columns:
+        near:
+          rows:
+            thumb:
+              column_net: P6
+              row_net: P16
+            second:
+              column_net: P7
+              row_net: P16
+        home:
+          rows:
+            thumb:
+              column_net: P5
+              row_net: P16
+            second:
+              column_net: P4
+              row_net: P16
+          origin: [-11.75, -9]
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1u - 0.5 , 1u -0.5]
+      - type: rectangle
+        size: [140, 103]
+        anchor:
+          ref: matrix_tab_bottom
+          shift: [-12, -22]
+      - type: rectangle
+        size: [60, 42]
+        anchor:
+          ref: matrix_tab_bottom
+          shift: [70, -12]
+          rotate: -45
+    nicenano:
+      - type: rectangle
+        size: [33, 17.8]
+        anchor:
+          ref: matrix_inner_bottom
+          rotate: -90
+          shift: [13, 65]
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 2
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5]
+        bound: false
+    # usb_cutout:
+    #   base:
+    #     type: rectangle
+    #     anchor:
+    #       ref:
+    #         - matrix_inner_top
+    #         - mirror_matrix_inner_top
+    #       shift: [-10, -10]
+    #     size: [20, 11]
+    #     corner: 2
+    preview:
+        [keycap_outlines, nicenano]
+pcbs:
+  xsp:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      # already reversible
+      promicro:
+        type: promicro_pretty
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [21, 56]
+          rotate: -90
+        params:
+          orientation: up
+      
+      niceview:
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [16, 38]
+        type: oled
+        nets:
+          SDA: P21
+          SCL: P20
+          CS: P1
+      
+      ec11:
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [18, 10]
+          rotate: -90
+        type: rotary
+        nets:
+          from: P9
+          to: R1
+          A: P2
+          B: P3
+          C: GND
+      diode:
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [19, 0]
+          # rotate: 90
+        type: diode
+        nets:
+          from: R1
+          to: P16
+        params:
+            reverse: true
+      viaRotary:
+        type: via
+        anchor: 
+          shift: [15,0]
+        nets: 
+          net: P16
+
+      # thru hole, so no need for reverse
+      powerswitch:
+        type: slider
+        nets: 
+          from: pos
+          to: RAW
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [0 , 70]
+          rotate: 0
+      via_pos:
+        type: via
+        anchor: 
+          ref: matrix_inner_bottom
+          shift: [8,35]
+        nets: 
+          net: pos 
+      
+      # draw two different button on each side
+      resetbutton:
+        type: button
+        nets: 
+          from: RST
+          to: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [-72 , 66]
+          # rotate: 0
+      resetbuttonBack:
+        type: button
+        nets: 
+          from: RST
+          to: GND
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [-72 , 66]
+          # rotate: 0
+        params:
+          side: B 
+      
+      # thru hole, no need for separate reverse
+      battery:
+        type: jstph
+        anchor:
+          ref: matrix_inner_bottom
+          shift: [14, 24]
+          rotate: 90
+        nets:
+          pos: pos
+          neg: GND
+      
+      # displayhole1:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_inner_bottom
+      #     shift: [36, 30]
+      # displayhole2:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_inner_bottom
+      #     shift: [26, 30]
+  
+      # casehole1:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_tab_bottom
+      #     shift: [-5, -20]
+      # casehole2:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_tab_bottom
+      #     shift: [-5, 80]
+      # casehole3:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_inner_bottom
+      #     shift: [-2, -10]
+      # casehole4:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_inner_bottom
+      #     shift: [-20, -30]
+      # casehole5:
+      #   type: mountHole
+      #   anchor:
+      #     ref: matrix_inner_bottom
+      #     shift: [-30, -20]
+
+# cases:
+#   # usb_cutout:
+#   #   - name: usb_cutout
+#   #     extrude: 200
+#   #     rotate: [-90, 0, 0]
+#   #     shift: [0, 0, -3.5]
+#   mycase:
+#     - name: cutout
+#       extrude: 8
+#       shift: [0, 0, -9]
+#     # - -usb_cutout

@@ -1,0 +1,256 @@
+
+points:
+  key:
+    padding: u
+    bind: [1,1,1,1]
+    footprints:
+      mx:
+        type: mx
+        nets:
+          from: =column_net
+          to: =colrow
+        anchor:
+          rotate: 90
+          shift: [0, 0]
+        params:
+            keycaps: true
+            hotswap: false
+            reverse: false
+      choc:
+        type: choc
+        nets:
+          from: =column_net
+          to: =colrow
+        anchor:
+          rotate: -90
+        params:
+            keycaps: true
+            hotswap: false
+            reverse: false
+      diode:
+        anchor:
+          shift: [5, 6]
+          rotate: -90
+        type: diode
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+          side: B
+  zones:
+    matrix:
+      anchor:
+        shift: [200, -250]
+      columns:
+        number:
+          rows:
+            pipe.skip: true
+            rb:
+              height: 1.5
+              shift: [0, 0.25u]
+          key:
+            column_net: P5
+        qwer:
+          key:
+            column_net: P6
+          stagger: -0.5U
+        asdf:
+          key:
+            column_net: P7
+          stagger: 0.25U
+          rows:
+            pipe.skip: true
+            rb:
+              height: 1.75
+              shift: [0, 0.375u]
+        zxcv:
+          key:
+            column_net: P8
+          stagger: 0.5u
+          rows:
+            pipe.skip: true
+            rb:
+              #height: 1.5u
+              shift: [0, 0.25u]
+            lb:
+              height: 1.25
+              shift: [0, 0.125u]
+        ctrl:
+          key:
+            column_net: P9
+          stagger: 0.25U
+          rows:
+            yhn.shift: [0, -1u]
+            ujm:
+              height: 1.75
+              shift: [0, -0.625u]
+            ik:
+              height: 1.25
+              shift: [0, -0.125u]
+            ol:
+              shift: [0, 0u]
+      rows:
+        yhn:
+          row_net: P16
+        ujm:
+          row_net: P21
+        ik: 
+          row_net: P20
+        ol:
+          row_net: P19
+        p0:
+          row_net: P18
+        lb:
+          row_net: P15
+        rb:
+          row_net: P14
+        pipe:
+          row_net: P16
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1u, 1u]
+    nicenano:
+      - type: rectangle
+        size: [33, 17.8]
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-18, 133]
+    vga:
+      - type: rectangle
+        size: [10, 173]
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-20, -20]
+    board:
+      - type: rectangle
+        size: [107, 173]
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-20, -20]
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5]
+        bound: false
+    preview:
+        [keycap_outlines, vga, nicenano]
+    cutout:
+      - type: outline
+        name: board
+        fillet: 2
+pcbs:
+  spkyv2_right:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-1, 143]
+        params:
+            orientation: up
+      battery:
+        type: jstph
+        anchor:
+          ref: matrix_number_yhn
+          shift: [25, 144]
+          rotate: 180
+        nets:
+          pos: pos
+          neg: GND
+      resetbutton:
+        type: button
+        nets:
+          from: RST
+          to: GND
+        anchor:
+          ref: matrix_number_yhn
+          shift: [26 , 138]
+          rotate: 180
+      resetbutton2:
+        type: buttonThruHole
+        nets:
+          from: RST
+          to: GND
+        anchor:
+          ref: matrix_number_yhn
+          shift: [35 , 141]
+          rotate: -90
+      powerswitch:
+        type: slider
+        nets:
+          from: pos
+          to: RAW
+        anchor:
+          ref: matrix_number_yhn
+          shift: [35 , 148]
+          rotate: 0
+      vga:
+        type: vga
+        nets:
+          V1: P16
+          V2: P14
+          V3: P15
+          V4: P18
+          V5: P19
+          V6: P20
+          V7: P21
+          V8: GND
+          V9: GND
+          V10: GND
+          V11: P1
+          V12: P0
+          V13: P2
+          V14: P3
+          V15: P4
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-12 , 0]
+          rotate: -90
+      hole1:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-15 , -16]
+        nets:
+          from: GND
+      hole2:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [-15 , 130]
+        nets:
+          from: GND
+      hole3:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [61 , -16]
+        nets:
+          from: GND
+      hole4:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [61 , 149]
+        nets:
+          from: GND
+      holeMCU1:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [18 , 136]
+        nets:
+          from: GND
+      holeMCU2:
+        type: mountHole
+        anchor:
+          ref: matrix_number_yhn
+          shift: [18 , 149]
+        nets:
+          from: GND

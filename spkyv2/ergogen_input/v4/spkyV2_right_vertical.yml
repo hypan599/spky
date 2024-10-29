@@ -1,0 +1,126 @@
+points:
+  key:
+    padding: u
+    bind: 2
+    footprints:
+      mx:
+        type: mx
+        # nets:
+        #  from: =column_net
+        #  to: =colrow
+        params:
+            keycaps: true
+      diode:
+        anchor:
+          shift: [-3, -4]
+        type: diode
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+            reverse: true
+  zones:
+    matrix:
+      columns:
+        number:
+          rows:
+            pipe.skip: true
+            rb:
+              height: 1.5u
+              shift: [0, 0.25u]
+        qwer:
+          key.stagger: -0.5U
+        asdf:
+          key.stagger: 0.25U
+          rows:
+            pipe.skip: true
+            rb:
+              height: 1.75u
+              shift: [0, 0.375u]
+        zxcv:
+          key.stagger: 0.5U
+          rows:
+            pipe.skip: true
+            rb:
+              #height: 1.5u
+              shift: [0, 0.125u]
+            lb:
+              height: 1.25u
+              shift: [0, 0.125u]
+        ctrl:
+          key.stagger: -0.75U
+          rows:
+            ujm:
+              height: 1.75u
+              shift: [0, 0.375u]
+            ik:
+              height: 1.25u
+              shift: [0, 0.5u]
+            ol:
+              shift: [0, 0.125u]
+        thumb:
+          rows:
+            ik.skip: true
+            ol.skip: true
+            p0.skip: true
+            lb.skip: true
+            rb.skip: true
+            pipe.skip: true
+      rows:
+        yhn:
+        ujm:
+        ik: 
+        ol:
+        p0:
+        lb:
+        rb:
+        pipe:
+outlines:
+  mcu:
+    - what: rectangle
+      size: [33, 17.8]
+      where:
+        ref: matrix_number_yhn
+        shift: [8, 143]
+  keycap_outlines:
+    - what: rectangle
+      size: [1u, 1u]
+      where: true
+  cutout:
+    - what: outline
+      name: mcu
+    - what: outline
+      name: keycap_outlines
+pcbs:
+  xsp:
+    outlines:
+      main:
+        outline: cutout
+
+    footprints:
+      choc:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: false
+          from: D1
+          to: D2
+      mx:
+        what: mx
+        where: true
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: false
+          from: D1
+          to: D2
+      promicro:
+        what: promicro
+        where:
+          ref: matrix_number_yhn
+          shift: [8, 143]
+        params:
+          orientation: up
+      

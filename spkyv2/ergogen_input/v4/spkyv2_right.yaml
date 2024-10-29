@@ -1,0 +1,82 @@
+points:
+  zones:
+    matrix:
+      columns:
+        y:
+          rows:
+            esc.skip: true
+            control:
+              width: 1.75u
+              shift: [0u]
+            zxcv:
+              shift: [0.375u]
+        u:
+          rows:
+            esc.skip: true
+            zxcv:
+              shift: [0u]
+        i:
+          rows:
+            thumb.skip: true
+            esc.skip: true
+            zxcv:
+              shift: [0u]
+        o:
+          rows:
+            thumb.skip: true
+            esc.skip: true
+            zxcv:
+              shift: [0u]
+        p:
+          rows:
+            thumb.skip: true
+            esc.skip: true
+            zxcv:
+              shift: [0u]
+        minus:
+          rows:
+            esc.skip: true
+            thumb.skip: true
+            zxcv:
+              width: 1.75u
+              shift: [0.375u, 0]
+            asdf:
+              shift: [-0.875u, 0]
+        equal:
+          rows:
+            zxcv.shift: [0.75u, 0]
+            thumb.skip: true
+            number:
+              width: 1.5u
+              shift: [0.8u, 0]
+            asdf:
+              width: 1.5u
+              shift: [-1u, 0]
+            qwer:
+              shift: [-0.5u, 0]
+            control:
+              shift: [0.375u, 0]
+        bksp:
+          rows:
+            thumb.skip: true
+            number.skip: true
+            esc.skip: true
+            asdf.skip: true
+            qwer:
+              shift: [-0.75u, 0]
+            zxcv.skip: true
+            control:
+              shift: [0.375u, 0]
+      rows:
+        thumb:
+        control:
+          shift: [0.375u]
+        zxcv:
+          shift: [0.5u, 0]
+        asdf:
+          shift: [-0.5u, 0]
+        qwer:
+          shift: [-0.25u, 0]
+        number:
+          shift: [0.5u, 0]
+        esc:

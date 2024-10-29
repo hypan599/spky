@@ -1,0 +1,190 @@
+
+points:
+  key:
+    padding: u
+    bind: [1,1,1,1]
+    footprints:
+      mx:
+        type: mx
+        nets:
+          from: =column_net
+          to: =colrow
+        anchor:
+          rotate: 90
+          shift: [0, 0]
+        params:
+            keycaps: true
+            hotswap: false
+            reverse: false
+      choc:
+        type: choc
+        nets:
+          from: =column_net
+          to: =colrow
+        anchor:
+          rotate: -90
+        params:
+            keycaps: true
+            hotswap: false
+            reverse: false
+      diode:
+        anchor:
+          shift: [5, 6]
+          rotate: -90
+        type: diode
+        nets:
+          from: =colrow
+          to: =row_net
+        params:
+          side: B
+  zones:
+    matrix:
+      anchor:
+        shift: [200, -250]
+      columns:
+        number:
+          key:
+            column_net: P1
+        qwer:
+          key:
+            column_net: P0
+          stagger: 0.5u
+          rows:
+            tilda:
+              height: 1.5
+              shift: [0, -0.25u]
+            six.skip: true
+        asdf:
+          key:
+            column_net: P2
+          stagger: 0.25u
+          rows:
+            tilda:
+              height: 1.75
+              shift: [0, -0.375u]
+            six.skip: true
+        zxcv:
+          key:
+            column_net: P3
+          stagger: -0.5u
+          rows:
+            tilda:
+              shift: [0, -0.25u]
+            qaz:
+              height: 1.25
+              shift: [0, -0.125u]
+        ctrl:
+          key:
+            column_net: P4
+          stagger: -0.25u
+          rows:
+            edc:
+              height: 1.25
+              shift: [0, 0.125u]
+            rfv:
+              shift: [0, 0.25u]
+              height: 1.25
+            tgb:
+              height: 1.25
+              shift: [0, 0.5u]
+            six.skip: true
+      rows:
+        tilda:
+          row_net: P21
+        qaz:
+          row_net: P20
+        wsx: 
+          row_net: P19
+        edc:
+          row_net: P18
+        rfv:
+          row_net: P15
+        tgb:
+          row_net: P14
+        six:
+          row_net: P16
+outlines:
+  exports:
+    raw: 
+      - type: keys
+        side: left
+        size: [1u, 1u]
+    vga:
+      - type: rectangle
+        size: [10, 137.8]
+        anchor:
+          ref: matrix_number_tilda
+          shift: [-20, -10]
+    board:
+      - type: rectangle
+        size: [107, 140]
+        anchor:
+          ref: matrix_number_tilda
+          shift: [-20, -10]
+    keycap_outlines:
+      - type: keys
+        side: left
+        size: [1cx - 0.5, 1cy - 0.5]
+        bound: false
+    preview:
+        [keycap_outlines, vga]
+    cutout:
+      - type: outline
+        name: board
+        fillet: 2
+pcbs:
+  spkyv2_left:
+    outlines:
+      main:
+        outline: cutout
+    footprints:
+      vga:
+        type: vga
+        nets:
+          V1: P16
+          V2: P14
+          V3: P15
+          V4: P18
+          V5: P19
+          V6: P20
+          V7: P21
+          V8: GND
+          V9: GND
+          V10: GND
+          V11: P1
+          V12: P0
+          V13: P2
+          V14: P3
+          V15: P4
+        anchor:
+          ref: matrix_number_tilda
+          shift: [-12 , 10]
+          rotate: -90
+      hole1:
+        type: mountHole
+        anchor:
+          ref: matrix_number_tilda
+          shift: [-15 , -6]
+        nets:
+          from: GND
+      hole2:
+        type: mountHole
+        anchor:
+          ref: matrix_number_tilda
+          shift: [-15 , 125]
+        nets:
+          from: GND
+      hole3:
+        type: mountHole
+        anchor:
+          ref: matrix_number_tilda
+          shift: [40 , -6]
+        nets:
+          from: GND
+      hole4:
+        type: mountHole
+        anchor:
+          ref: matrix_number_tilda
+          shift: [83 , 125]
+        nets:
+          from: GND
